@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dostluk Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#e6f7ff;color:#333;transition:background 0.5s,color 0.5s;}
+a{text-decoration:none;color:inherit;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.logo{font-weight:700;font-size:1.8em;color:#1a75ff;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;}
+.gece-mod:hover{background:#1a75ff;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#4db8ff,#0066cc);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/3N0V0Fjc/friends-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#0066cc;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Dostluk Sözleri</h1>
+<p>Gerçek dostlar hayatımızı güzelleştirir. İşte dostluğu anlatan 150 güzel söz.</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+const sozler=[
+"Dost, yıldız gibi… Her zaman yanındadır ama her zaman görünmez.",
+"Gerçek dost, kötü gününde yanında olandır.",
+"Dostluk, mesafelerle değil kalplerle ölçülür.",
+"İyi bir dost, seninle sessizliği paylaşabilendir.",
+"Dostlar hayatın tuzu biberidir; olmadan her şey tatsızdır.",
+"Dostluk, paylaşılan mutlulukların ve acıların toplamıdır.",
+"Bir dost, kalbini açabildiğin kişidir.",
+"Dostluk, zamanla değil, sadakatle ölçülür.",
+"Gerçek dostluk, birbirini tamamlamaktır, değiştirmek değil.",
+"Dostluk, en güzel öğretmendir.",
+"Dostluk, acıyı paylaşabilmektir.",
+"Arkadaş, hayatın en değerli hazinesidir.",
+"Dost, sessiz bir güvencedir.",
+"Dostluk, yüreğin sıcaklığıdır.",
+"Bir dost, en karanlık gecende ışığın olur.",
+"Dostluk, güven ve sadakatle büyür.",
+"Dost, kalbin aynasıdır.",
+"Dostluk, yaşamı güzelleştirir.",
+"Dostluk, en zor anlarda bile umut verir.",
+"Dost, seni olduğun gibi kabul edendir.",
+"Dostluk, paylaşılan kahkahadır.",
+"Dost, en iyi sırdaştır.",
+"Dostluk, ruhun gıdasıdır.",
+"Arkadaş, kalbin huzurudur.",
+"Dostluk, hayatın rengidir.",
+"Dost, fırtınada limandır.",
+"Dostluk, sadakatin simgesidir.",
+"Dost, en zor zamanlarda yanındadır.",
+"Dostluk, sevgiden büyüktür.",
+"Arkadaş, sana kendin olma cesareti verir.",
+"Dost, gülüşünü paylaşandır.",
+"Dostluk, zamanın testidir.",
+"Dost, kalbini kırmadan öğüt verendir.",
+"Dostluk, sevginin ifadesidir.",
+"Dost, sırdaşın, yoldaşındır.",
+"Dostluk, paylaşmanın değeridir.",
+"Dost, yanında olmasa da hissettirendir.",
+"Dostluk, yaşamın şifresidir.",
+"Dost, seni anlamaktır.",
+"Dostluk, zor günlerin ilacıdır.",
+"Dost, sabrın ve anlayışın kaynağıdır.",
+"Dostluk, güvenin adı, sevgidir.",
+"Dost, en kıymetli hazinedir.",
+"Dostluk, hayatın anlamıdır.",
+"Dost, kederi ve neşeyi paylaşandır.",
+"Dostluk, en büyük armağandır.",
+"Dost, yanındayken zamanın nasıl geçtiğini unutturandır.",
+"Dostluk, kalbin huzurudur.",
+"Dost, hayatının aynasıdır.",
+"Dostluk, fedakarlığın göstergesidir.",
+"Dost, umut ışığıdır.",
+"Dostluk, yaşamı paylaşmaktır.",
+"Dost, seni sen olduğun için seven kişidir.",
+"Dostluk, güven ve samimiyetle örülür.",
+"Dost, kötü günde yanında olandır.",
+"Dostluk, ruhun zenginliğidir.",
+"Dost, karanlıkta yol gösterendir.",
+"Dostluk, sabır ve anlayış ister.",
+"Dost, mutluluğu çoğaltandır.",
+"Dostluk, gönül bağlarıdır.",
+"Dost, hayatına anlam katan kişidir.",
+"Dostluk, güvenin ve sevginin birleşimidir.",
+"Dost, sırları koruyandır.",
+"Dostluk, samimiyet ve sevgidir.",
+"Dost, her zaman yanında olan kişidir.",
+"Dostluk, paylaşmanın adıdır.",
+"Dost, kalpte iz bırakan kişidir.",
+"Dostluk, fedakarlıkla büyür.",
+"Dost, yanında olmasa da hissedilendir.",
+"Dostluk, hayatın en değerli parçasıdır.",
+"Dost, mutluluğunu paylaşandır.",
+"Dostluk, sessiz anlaşmalardır.",
+"Dost, acıyı hafifleten kişidir.",
+"Dostluk, birlikte büyümektir.",
+"Dost, hayat yolunda yol arkadaşıdır.",
+"Dostluk, güvenin ve sadakatin adı.",
+"Dost, zor anlarda güç verendir.",
+"Dostluk, paylaşılan anıların toplamıdır.",
+"Dost, seninle gülen ve ağlayandır.",
+"Dostluk, kalpte yaşar.",
+"Dost, seni motive eden kişidir.",
+"Dostluk, en güzel armağandır.",
+"Dost, yanında huzur bulduğun kişidir.",
+"Dostluk, zamanla olgunlaşır.",
+"Dost, kalbini kırmaz, anlayandır.",
+"Dostluk, ruhun gıdasıdır.",
+"Dost, seni olduğun gibi kabul eder.",
+"Dostluk, güvenle başlar.",
+"Dost, seninle hayallerini paylaşandır.",
+"Dostluk, sabır ve sevgi ister.",
+"Dost, en zor anlarda destek olandır.",
+"Dostluk, paylaşılan mutluluklardır.",
+"Dost, hayatına renk katar.",
+"Dostluk, gerçek sevgidir.",
+"Dost, yanında olmasa da hissedilendir.",
+"Dostluk, ruhun yoldaşıdır.",
+"Dost, seni yalnız bırakmayan kişidir.",
+"Dostluk, fedakarlığın adıdır.",
+"Dost, kalbine dokunandır.",
+"Dostluk, güven ve sevgidir.",
+"Dost, hayat yolunda ışık olandır.",
+"Dostluk, sabır ve anlayışla büyür.",
+"Dost, en değerli hazinedir.",
+"Dostluk, mutluluğu çoğaltır.",
+"Dost, yanında olduğunda huzur verir.",
+"Dostluk, zamanla güçlenir.",
+"Dost, kalpte iz bırakandır.",
+"Dostluk, hayatı güzelleştirir.",
+"Dost, her zaman yanında olandır.",
+"Dostluk, sevgiyi paylaşmaktır.",
+"Dost, yanında olmasa da kalpte olandır.",
+"Dostluk, güven ve sadakatle örülür.",
+"Dost, seni anlayandır.",
+"Dostluk, sabrın ve sevginin birleşimidir.",
+"Dost, hayatına değer katan kişidir.",
+"Dostluk, en güzel armağandır.",
+"Dost, yanında huzur bulduğundur.",
+"Dostluk, birlikte gülmek ve ağlamaktır.",
+"Dost, karanlıkta yol gösterendir.",
+"Dostluk, paylaşılan duygulardır.",
+"Dost, her zaman yanındadır.",
+"Dostluk, sabır ve güven ister.",
+"Dost, yanında olmasa da hissedilendir.",
+"Dostluk, kalpte yaşar ve büyür.",
+"Dost, seninle birlikte yol alandır.",
+"Dostluk, hayatın en kıymetli değeridir.",
+"Dost, mutluluğu paylaşandır.",
+"Dostluk, güvenin ve sevgidir.",
+"Dost, yanında olmasa da seninledir.",
+"Dostluk, fedakarlık ve samimiyettir.",
+"Dost, ruhuna dokunandır.",
+"Dostluk, en değerli hazinedir."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#e6f7ff';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

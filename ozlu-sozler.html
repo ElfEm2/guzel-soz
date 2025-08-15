@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Özlü Sözler - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#f8f8f8;color:#333;transition:background 0.5s,color 0.5s;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:relative;}
+.logo{font-weight:700;font-size:1.8em;color:#ff3366;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;position:absolute;right:20px;top:50%;transform:translateY(-50%);}
+.gece-mod:hover{background:#ff3366;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#ff9966,#ff5e62);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/0yGfNqNm/ozlu-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff3366;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Özlü Sözler</h1>
+<p>Kısa ama derin anlamlar taşıyan özlü sözleri keşfedin</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+// Özlü sözler - 150 adet
+const sozler=[
+"Hayat, cesur olanı ödüllendirir.",
+"Bilgi güçtür, uygulamak ise erdem.",
+"Az konuş, çok dinle.",
+"Zaman, en değerli hazinedir.",
+"Mutluluk, paylaştıkça çoğalır.",
+"Denemeden pes etme.",
+"Sabır, zaferin anahtarıdır.",
+"Küçük adımlar büyük fark yaratır.",
+"Sevgi, hayatın temelidir.",
+"Hayaller, eylemlerle gerçeğe dönüşür.",
+"Her son, yeni bir başlangıçtır.",
+"Düşler, cesaretle gerçeğe dönüşür.",
+"Başkalarını değiştirmenin yolu, önce kendini değiştirmektir.",
+"Başarı, hazırlık ve fırsatın buluştuğu noktadır.",
+"Hata, öğrenmenin en hızlı yoludur.",
+"Kalp, akıldan daha çok bilir.",
+"En zor zamanlar, en büyük dersleri verir.",
+"Hayat, cesaretle anlam kazanır.",
+"Bir gülümseme, bin söze bedeldir.",
+"Yalnızlık, kendini bulma yoludur.",
+"Özveri, gerçek güçtür.",
+"Sevgi, en güçlü motivasyondur.",
+"Zorluklar, sabrın sınavıdır.",
+"Bilgelik, deneyimle gelir.",
+"Mutluluk, küçük anlarda gizlidir.",
+"Her düşüş, yeni bir yükseliştir.",
+"Sevgiyle yapılan her şey güzeldir.",
+"Hayat, seçimlerle şekillenir.",
+"Başarı, disiplin ve azimle gelir.",
+"Özgürlük, bilinçli seçimdir.",
+"İyilik, bulaşıcıdır.",
+"Gerçek, her zaman ortaya çıkar.",
+"Öğrenmek, yaşamın süresiz yolculuğudur.",
+"Tecrübe, en iyi öğretmendir.",
+"Cesaret, korkunun üstesinden gelmektir.",
+"Sabır, zamanın en iyi dostudur.",
+"Her gün yeni bir başlangıçtır.",
+"Bilgi, paylaştıkça çoğalır.",
+"Hayat, küçük mutluluklarla güzelleşir.",
+"Başarı, pes etmeyenindir.",
+"Zorluklar, karakteri şekillendirir.",
+"Sevgi, her zaman yol gösterir.",
+"Özlü sözler, kalpte iz bırakır.",
+"Mutluluk, şükretmekle başlar.",
+"Hayaller, cesaretle beslenir.",
+"Başarı, disiplin ve azimle kazanılır.",
+"Özgüven, en büyük güçtür.",
+"İyilik, ruhu besler.",
+"Zaman, geri alınamaz.",
+"Bilgelik, sessizlikte gizlidir.",
+"Sevgi, hayatın anlamıdır.",
+"Başarı, plan ve eylemin birleşimidir.",
+"Hata yapmak, insan olmaktır.",
+"Mutluluk, iç huzurla başlar.",
+"Hayat, değişime açık olanındır.",
+"Tecrübe, sabırla edinilir.",
+"Cesaret, korkularla yüzleşmektir.",
+"Bilgi, özgürlüğün anahtarıdır.",
+"Sevgi, en güzel mirastır.",
+"Başarı, hazırlık ve fırsatın ürünüdür.",
+"Özveri, gerçek değeri gösterir.",
+"Mutluluk, başkalarını mutlu etmekle gelir.",
+"Hayat, anlam arayışıyla güzelleşir.",
+"Denemek, başarmanın ilk adımıdır.",
+"Bilgelik, öğrenmekle çoğalır.",
+"Sevgi, en kalıcı izdir.",
+"Sabır, her zorluğu aşar.",
+"Başarı, hedef ve kararlılıkla gelir.",
+"Özgüven, hayatın en güçlü silahıdır.",
+"Mutluluk, küçük şeylerde saklıdır.",
+"Hayat, seçimlerin toplamıdır.",
+"Tecrübe, zamanla değer kazanır.",
+"Cesaret, değişimi başlatır.",
+"Bilgi, karanlıkta yol gösterir.",
+"Sevgi, en güçlü bağdır.",
+"Başarı, azimli olanındır.",
+"Özlü sözler, düşünceyi şekillendirir.",
+"Mutluluk, şükürle büyür.",
+"Hayat, cesur olanın yoludur.",
+"Başarı, planlı ve istikrarlı çalışmayla gelir.",
+"Zorluklar, güçlendirir.",
+"Sevgi, paylaşınca çoğalır.",
+"Bilgelik, deneyimle olgunlaşır.",
+"Sabır, her zaman kazandırır.",
+"Mutluluk, içsel bir yolculuktur.",
+"Hayat, farkındalıkla güzelleşir.",
+"Özgüven, başarıyı getirir.",
+"Başarı, sabır ve azimle elde edilir.",
+"Özlü sözler, ruhu besler.",
+"Sevgi, kalpten kalbe akar.",
+"Denemek, öğrenmenin başlangıcıdır.",
+"Bilgi, en büyük hazinedir.",
+"Cesaret, kararlılıkla beslenir.",
+"Mutluluk, huzur ve sevgiyle büyür.",
+"Hayat, fırsatları değerlendirenindir.",
+"Başarı, sürekli çabayla kazanılır.",
+"Özgüven, hedefe giden yoldur.",
+"Sevgi, her zaman yol gösterendir.",
+"Bilgelik, sabırla kazanılır.",
+"Mutluluk, küçük anlarda saklıdır.",
+"Hayat, değer yaratmakla anlam kazanır.",
+"Başarı, öğrenmeye ve denemeye bağlıdır.",
+"Özlü sözler, ilham verir.",
+"Sevgi, insanı insan yapar.",
+"Cesaret, hayallerin önünü açar.",
+"Bilgi, doğru kararın temelidir.",
+"Mutluluk, içsel farkındalıkla gelir.",
+"Hayat, anlam arayanın yoludur.",
+"Başarı, emek ve disiplinle mümkündür.",
+"Özgüven, engelleri aşmanın anahtarıdır.",
+"Sevgi, hayatın en güzel armağanıdır.",
+"Bilgelik, deneyimle şekillenir.",
+"Mutluluk, paylaşıldıkça çoğalır.",
+"Hayat, cesaretle güzelleşir.",
+"Başarı, azimli ve kararlı olanındır.",
+"Özlü sözler, kalpte derin iz bırakır.",
+"Sevgi, yaşamın temelidir.",
+"Sabır, zorlukların anahtarıdır.",
+"Cesaret, korkuları yenmektir.",
+"Bilgi, her zaman güçtür.",
+"Mutluluk, huzur ve sevgiyle doğar.",
+"Hayat, farkındalıkla değer kazanır.",
+"Başarı, kararlılık ve sabırla gelir.",
+"Özgüven, her zaman kazandırır.",
+"Sevgi, her an yol gösterir.",
+"Bilgelik, sessizlikte büyür.",
+"Mutluluk, küçük mutluluklarda gizlidir.",
+"Hayat, deneyimle olgunlaşır.",
+"Başarı, hazırlık ve azimle elde edilir.",
+"Özlü sözler, düşünceyi yönlendirir.",
+"Sevgi, insanın en değerli hazinesidir.",
+"Cesaret, hayatın kapılarını açar.",
+"Bilgi, karanlıkta yol gösterir.",
+"Mutluluk, içsel huzurla başlar.",
+"Hayat, seçimlerin toplamıdır.",
+"Başarı, çaba ve azimle kazanılır.",
+"Özgüven, hedeflere ulaşmanın anahtarıdır.",
+"Sevgi, paylaştıkça çoğalır."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#f8f8f8';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

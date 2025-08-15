@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mizah Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#ffe6e6;color:#333;transition:background 0.5s,color 0.5s;}
+a{text-decoration:none;color:inherit;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.logo{font-weight:700;font-size:1.8em;color:#ff3366;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;}
+.gece-mod:hover{background:#ff3366;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#ff7b54,#ff4b2b);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/xC4yzzG9/heart-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff4b2b;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Mizah Sözleri</h1>
+<p>Gülümseten, espirili ve eğlenceli sözler</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+const sozler=[
+"Hayat kısa, gülümse biraz!",
+"Uykusuz kaldım ama hayallerimle komik vakit geçirdim.",
+"Para konuşur, kahkaha bağırır!",
+"Gülmek bulaşıcıdır, dikkatli ol!",
+"Kahkaha en ucuz ilaçtır.",
+"Hayat ciddi ama ben değilim.",
+"Sabah kahvesiz uyanmak yasaktır.",
+"Espiri yapamıyorsam, en azından gülüyorum.",
+"Komik olmak yetenek, gülmek ise erdem.",
+"Hayat kısa, pizza ye!",
+"Gülmek kilo aldırmaz.",
+"Uykusuzluk insanı komik yapar.",
+"Hayat bir şaka, ben de fıkrayım.",
+"Akıllı olmak ciddi olmayı gerektirmez.",
+"Geceyi seviyorum, çünkü kimse şakalarımı anlamıyor.",
+"Bilgisayar başında hayal kurmak serbesttir.",
+"Gülmek en iyi egzersizdir.",
+"Komiklik genetik olabilir, dikkat et.",
+"Espiri patlattım, kahkaha aldım.",
+"Hayat komik, sen de ol!",
+"Patates kızartması hayata renk katar.",
+"Çay içmeden konuşmam.",
+"Sabah alarmını dinlemeden gülmek güzeldir.",
+"Ben uyurken bile komik rüya görüyorum.",
+"Mutlu olmak bir seçimdir, espiri yapmak da öyle.",
+"Gülmek spor salonuna gitmekten daha eğlencelidir.",
+"Şaka yapmak için doğru zaman: Şimdi!",
+"Hayat bir tiyatro, ben komedyenim.",
+"Kahkaha attım, dünya durdu sandım.",
+"Espiri yetmez, mimikler şart!",
+"Hayat kısa, selfie çek!",
+"Komik insanlar hayatı kolaylaştırır.",
+"Gülmek ücretsizdir, kullanmaya değer.",
+"Sabah uykusuz ama kahkaha dolu.",
+"Espirilerimle gününü aydınlatıyorum.",
+"Hayat ciddi olmayı gerektirmez.",
+"Gülmek bulaşıcıdır, yanında kal!",
+"Espiri yap, stresten uzaklaş!",
+"Hayat bir oyun, kahkaha kazandırır.",
+"Kahkaha, ruhun en güzel melodisidir.",
+"Gülmekte sınır yok, sadece tebessüm var.",
+"Hayat kısa, espri yap!",
+"Sabah kahvesi ve komik sözler şart.",
+"Komik insanlar hayatı renklendirir.",
+"Espiri patlat, moral kazan.",
+"Hayat ciddi ama şakalarım ciddi değil.",
+"Ben şaka yaparım, sen gülersin.",
+"Gülmek, ruhun dansıdır.",
+"Hayat kısa, şakayı kaçırma.",
+"Komik düşün, mutlu yaşa.",
+"Espiri yetmez, kahkaha şart.",
+"Hayat ciddi, ama kahkaha ciddi değil.",
+"Gülmek ruhu besler.",
+"Espiri yap, stresini azalt.",
+"Hayat kısa, kahkaha uzun.",
+"Komik insanlar her yeri aydınlatır.",
+"Espiri patlat, gününü güzelleştir.",
+"Gülmek güzel, kahkaha daha güzel.",
+"Hayat bir espridir, sen de kahkaha at.",
+"Sabah gül, öğlen gül, akşam gül.",
+"Espiri yapmak sanattır.",
+"Hayat kısa, gülmek uzun.",
+"Komik anılar biriktir.",
+"Espiri ve kahkaha dolu günler.",
+"Hayat ciddi, ama gülmek serbest.",
+"Ben komikim, sen gülersin.",
+"Gülmek, mutluluğun en tatlı hali.",
+"Espiri yap, moral kazan.",
+"Hayat kısa, şaka yapmayı unutma.",
+"Komik olmak cesaret ister.",
+"Gülmek kalbe iyi gelir.",
+"Espiri ile stresten uzaklaş.",
+"Hayat bir komedi, sen başrol!",
+"Sabah uykusuz ama kahkaha dolu.",
+"Komik insan her zaman fark edilir.",
+"Gülmek ruhun vitaminidir.",
+"Espiri yap, gününü aydınlat.",
+"Hayat kısa, kahkaha şart.",
+"Komik insanlar dünyayı güzelleştirir.",
+"Espiri yap, mutluluğu yakala.",
+"Gülmek en güzel alışkanlıktır.",
+"Hayat ciddi, espiri eğlenceli.",
+"Ben şaka yaptım, sen güldün.",
+"Hayat kısa, kahkaha uzun.",
+"Espiri ve kahkaha bir arada olsun.",
+"Gülmek enerji verir.",
+"Komik insanlar hayatı kolaylaştırır.",
+"Hayat bir espridir, gülerek yaşa.",
+"Espiri patlat, stresini azalt.",
+"Ben komikim, sen gülersin.",
+"Gülmek bulaşıcıdır, yanında kal.",
+"Espiri yap, hayatını güzelleştir.",
+"Hayat kısa, kahkaha dolu.",
+"Komik anılar biriktir, gül.",
+"Espiri ve kahkaha ruhun ilacıdır.",
+"Gülmek, mutluluğun kaynağıdır.",
+"Hayat ciddi ama kahkaha serbest.",
+"Espiri yapmak özgürlüktür.",
+"Komik olmak bir yetenektir.",
+"Hayat kısa, şaka patlat.",
+"Gülmek ruhun en güzel melodisidir.",
+"Espiri ile stresini azalt.",
+"Ben şaka yaptım, sen güldün.",
+"Hayat bir komedi, kahkaha başrol!",
+"Espiri yap, mutluluğu yakala.",
+"Gülmek, en iyi tedavidir.",
+"Komik insanlar dünyayı renklendirir.",
+"Hayat kısa, kahkaha uzun.",
+"Espiri ve gülmek serbest.",
+"Gülmek kalbe iyi gelir.",
+"Hayat ciddi, espiri eğlenceli.",
+"Komik insanlar hayatı güzelleştirir.",
+"Espiri patlat, gününü aydınlat.",
+"Ben komikim, sen güldün.",
+"Gülmek bulaşıcıdır, yanında kal.",
+"Espiri yap, moral kazan.",
+"Hayat kısa, kahkaha dolu.",
+"Komik anılar biriktir, gül.",
+"Espiri ve kahkaha ruhun ilacıdır.",
+"Gülmek, mutluluğun kaynağıdır.",
+"Hayat ciddi ama kahkaha serbest."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#ffe6e6';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

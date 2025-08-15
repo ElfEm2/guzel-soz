@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabır Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#ffe6e6;color:#333;transition:background 0.5s,color 0.5s;}
+a{text-decoration:none;color:inherit;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.logo{font-weight:700;font-size:1.8em;color:#ff3366;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;}
+.gece-mod:hover{background:#ff3366;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#ff7b54,#ff4b2b);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/xC4yzzG9/heart-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff4b2b;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Sabır Sözleri</h1>
+<p>Sabır, en zor anlarda bile güç verir. İşte sabrı anlatan sözler.</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+const sozler=[
+"Sabır acıdır, meyvesi tatlıdır.",
+"Zorluklar sabrı öğretir.",
+"Sabır, kalbin gücüdür.",
+"Her şeyin zamanı vardır.",
+"Sabır, insanı olgunlaştırır.",
+"Sabır, en büyük erdemdir.",
+"Zor günler geçer, sabır kalır.",
+"Sabırla bekleyen, mutluluğu bulur.",
+"Sabır, en doğru öğretmendir.",
+"Hayatta sabır, en iyi rehberdir.",
+"Sabırlı olmak, huzurun anahtarıdır.",
+"Sabır, en sessiz güce sahiptir.",
+"Zorluklar sabrı test eder.",
+"Sabır, hayatın temel taşlarından biridir.",
+"Beklemek sabrın ödülüdür.",
+"Sabır, zamanla güzelleşir.",
+"Sabır, kalpteki dinginliktir.",
+"Zorluklar sabrı güçlendirir.",
+"Sabır, karanlıkta ışık bulmaktır.",
+"Sabır, en güçlü silahımızdır.",
+"Hayatta sabırla kazanılır.",
+"Sabır, hayatın en kıymetli dersidir.",
+"Zorluklar, sabrı öğrenmek için vardır.",
+"Sabır, ruhun direnç kaynağıdır.",
+"Sabır, sabahın erken ışığı gibidir.",
+"Beklemek, sabrın bir parçasıdır.",
+"Sabır, insanı olgunlaştırır.",
+"Zor zamanlarda sabır göstermek gerekir.",
+"Sabır, kalbin derinliğidir.",
+"Sabır, fırtınada sığınaktır.",
+"Sabır, sevginin ve anlayışın kaynağıdır.",
+"Sabır, yaşamın rehberidir.",
+"Sabır, en güzel öğretmendir.",
+"Zorluklar sabrı değerli kılar.",
+"Sabır, kalbin huzurudur.",
+"Sabır, hayatın en tatlı ödülüdür.",
+"Sabır, zamanın sabırlı çocuğudur.",
+"Sabır, olgunlaşmanın göstergesidir.",
+"Sabır, kalpteki sessizliktir.",
+"Sabır, zor anların ilacıdır.",
+"Sabır, en sabırlı olan kazanır.",
+"Zorluklar sabrı sınar.",
+"Sabır, umutla birleşir.",
+"Sabır, en güçlü kuvvettir.",
+"Sabır, direncin kaynağıdır.",
+"Sabır, kararlılığın sembolüdür.",
+"Sabır, kalpteki ışığı korur.",
+"Sabır, en sessiz mücadeledir.",
+"Sabır, en kıymetli hazinedir.",
+"Zorluklar, sabrı öğretir.",
+"Sabır, sabrın kendisidir.",
+"Sabır, hayat yolculuğunun rehberidir.",
+"Sabır, zor zamanların öğretmenidir.",
+"Sabır, dinginliğin simgesidir.",
+"Sabır, her şeyin temelidir.",
+"Sabır, beklemenin güzelliğidir.",
+"Sabır, yaşamın değeridir.",
+"Sabır, sabırlı olmanın ödülüdür.",
+"Sabır, en güzel erdemdir.",
+"Sabır, kararlılığın gücüdür.",
+"Sabır, hayatın tadıdır.",
+"Sabır, her zaman kazandırır.",
+"Sabır, insanı yüceltir.",
+"Sabır, ruhun rehberidir.",
+"Sabır, sabahın ışığıdır.",
+"Sabır, en zor zamanlarda güç verir.",
+"Sabır, olgunluğun göstergesidir.",
+"Sabır, hayatın anahtarıdır.",
+"Sabır, dayanıklılığın simgesidir.",
+"Sabır, en derin bilgidir.",
+"Sabır, kalpteki huzurdur.",
+"Sabır, en sessiz kuvvettir.",
+"Sabır, zamanla ödüllenir.",
+"Sabır, umutla beslenir.",
+"Sabır, sabırla çoğalır.",
+"Sabır, dinginliğin kaynağıdır.",
+"Sabır, en güzel hediye gibidir.",
+"Sabır, insanı güçlü kılar.",
+"Sabır, her durumda değerlidir.",
+"Sabır, en büyük nimettir.",
+"Sabır, fırtınalarda sabittir.",
+"Sabır, kararlılığın temelidir.",
+"Sabır, sabırla kazanılır.",
+"Sabır, kalbin dayanıklılığıdır.",
+"Sabır, olgunluğun kaynağıdır.",
+"Sabır, beklemenin gücüdür.",
+"Sabır, en değerli öğretmendir.",
+"Sabır, dingin ruhun simgesidir.",
+"Sabır, yaşamın en güzel dersidir.",
+"Sabır, sabırlı olmak erdemdir.",
+"Sabır, sabırla yol almak başarının sırrıdır.",
+"Sabır, zorlukları aşmanın yoludur.",
+"Sabır, hayatta sabırlı olmayı gerektirir.",
+"Sabır, beklemekle güçlenir.",
+"Sabır, sabahın ilk ışığı gibidir.",
+"Sabır, kalbin sabrıdır.",
+"Sabır, sabırlı olanı ödüllendirir.",
+"Sabır, zamanla güzelleşir.",
+"Sabır, her şeye sabırla yaklaşmak erdemdir.",
+"Sabır, olgun bir ruhun göstergesidir.",
+"Sabır, hayatın en değerli hazinesidir.",
+"Sabır, sabrın kendisidir.",
+"Sabır, her zaman kazandırır.",
+"Sabır, zor zamanlarda güç verir.",
+"Sabır, en güçlü silahımızdır.",
+"Sabır, beklemenin ödülüdür.",
+"Sabır, dinginliğin kaynağıdır.",
+"Sabır, sabırlı olmak sabrın kendisidir.",
+"Sabır, hayat yolculuğunun rehberidir.",
+"Sabır, en güzel öğretmendir.",
+"Sabır, kalpteki sessizliktir.",
+"Sabır, her zaman değerlidir.",
+"Sabır, umutla beslenir.",
+"Sabır, zamanla güçlenir.",
+"Sabır, insanı olgunlaştırır.",
+"Sabır, kararlılığın simgesidir.",
+"Sabır, sabrın ve emeğin birleşimidir.",
+"Sabır, ruhun dinginliğidir.",
+"Sabır, en güzel ödüldür.",
+"Sabır, sabırla kazanılır.",
+"Sabır, en derin bilgidir.",
+"Sabır, dinginliğin simgesidir.",
+"Sabır, sabrın gücüdür."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#ffe6e6';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

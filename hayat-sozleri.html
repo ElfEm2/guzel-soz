@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hayat Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#f8f8f8;color:#333;transition:background 0.5s,color 0.5s;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:relative;}
+.logo{font-weight:700;font-size:1.8em;color:#ff3366;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;position:absolute;right:20px;top:50%;transform:translateY(-50%);}
+.gece-mod:hover{background:#ff3366;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#36d1dc,#5b86e5);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/3x3FTYzM/hayat-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff3366;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Hayat Sözleri</h1>
+<p>Hayata dair anlamlı ve düşündürücü 150 söz</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+// Hayat sözleri - 150 adet
+const sozler=[
+"Hayat, cesur olanın yoludur.",
+"Zaman, en değerli hazinedir.",
+"Mutluluk, küçük anlarda gizlidir.",
+"Hayat kısa, gülümse.",
+"Deneyim, hayatın en iyi öğretmenidir.",
+"Sevgi, hayatın anlamıdır.",
+"Hayat, değişimle güzelleşir.",
+"Her gün yeni bir başlangıçtır.",
+"Olumsuzluklar, güçlenmenin yoludur.",
+"Hayat, fırsatlarla doludur.",
+"Sabır, hayatın anahtarıdır.",
+"Hayat, cesur yüreklerin oyun alanıdır.",
+"Her zorluk, yeni bir fırsattır.",
+"Hayat, hayallerin peşinden gitmektir.",
+"Sevgiyle yaşamak, hayatı güzelleştirir.",
+"Hayat, küçük mutlulukları fark etmektir.",
+"Başarı, hayatın ödülüdür.",
+"Hayat, deneyimlerle öğrenmektir.",
+"Her an değerli, onu iyi kullan.",
+"Hayat, sabır ve emek ister.",
+"Olumlu düşün, hayat güzelleşir.",
+"Hayat, sevgiyle beslenir.",
+"Zorluklar, hayatı anlamlı kılar.",
+"Hayat, her gün yeniden başlar.",
+"Denemek, hayatın fırsatıdır.",
+"Hayat, öğrenmekle büyür.",
+"Mutluluk, içten gelen bir duygudur.",
+"Hayat, risk almayı gerektirir.",
+"Hayat, sevdiklerinle anlam kazanır.",
+"Hayat, değişime açık olmayı gerektirir.",
+"Her deneyim, hayatın hediyesidir.",
+"Hayat, cesaretle şekillenir.",
+"Sevgi, hayatın yakıtıdır.",
+"Hayat, sabırla kazanılır.",
+"Her kayıp, hayatın öğretmenidir.",
+"Hayat, hayallerin peşinde olmaktır.",
+"Olumlu adımlar, hayatı değiştirir.",
+"Hayat, öğrenmeye ve gelişmeye açıktır.",
+"Hayat, küçük anlarda güzeldir.",
+"Hayat, paylaşmakla anlam kazanır.",
+"Her hata, hayatın dersidir.",
+"Hayat, kendini keşfetmektir.",
+"Hayat, sabır ve azimle yürünür.",
+"Hayat, fırsatları değerlendirmektir.",
+"Hayat, sevdiklerinle güzel.",
+"Her nefes, hayatın hediyesidir.",
+"Hayat, cesaretle doludur.",
+"Hayat, her gün bir şanstır.",
+"Hayat, değişimle güzelleşir.",
+"Her an, hayatın değeridir.",
+"Hayat, mücadeleyle anlam kazanır.",
+"Hayat, deneyimlerle olgunlaşır.",
+"Hayat, sabır ve emekle anlam bulur.",
+"Hayat, sevgi ve dostlukla güzeldir.",
+"Hayat, hayal kurmakla başlar.",
+"Hayat, fırsatları iyi değerlendirmektir.",
+"Her adım, hayatın yoludur.",
+"Hayat, cesur adımlarla ilerler.",
+"Hayat, risk almakla renklidir.",
+"Hayat, umut ve inançla devam eder.",
+"Hayat, öğrenmek ve büyümektir.",
+"Hayat, küçük mutluluklarla doludur.",
+"Hayat, her an değerli ve kıymetlidir.",
+"Hayat, sevgi ve anlayışla güzeldir.",
+"Hayat, hayallerle şekillenir.",
+"Hayat, engelleri aşmakla güzelleşir.",
+"Hayat, her gün yeni bir fırsattır.",
+"Hayat, cesur ve azimli olanın yoludur.",
+"Hayat, sabır ve disiplinle kazanılır.",
+"Hayat, risk almayı gerektirir.",
+"Hayat, paylaşmakla güzelleşir.",
+"Hayat, hatalardan öğrenmektir.",
+"Hayat, sevgi ve mutlulukla anlam kazanır.",
+"Hayat, deneyimlerle zenginleşir.",
+"Hayat, her an değerli bir fırsattır.",
+"Hayat, cesaret ve sabırla ilerler.",
+"Hayat, hayallerin peşinde olmaktır.",
+"Hayat, zorlukları aşmakla güzeldir.",
+"Hayat, küçük sevinçlerle doludur.",
+"Hayat, sabır ve inançla güzelleşir.",
+"Hayat, öğrenmek ve gelişmekle anlam kazanır.",
+"Hayat, cesaret ve azimle yürünür.",
+"Hayat, her gün yeni bir başlangıçtır.",
+"Hayat, olumlu düşünmekle güzelleşir.",
+"Hayat, sevgi ve dostlukla doludur.",
+"Hayat, hayaller ve hedeflerle anlam kazanır.",
+"Hayat, her an bir fırsattır.",
+"Hayat, risk almayı ve denemeyi gerektirir.",
+"Hayat, sabır ve azimle güzelleşir.",
+"Hayat, cesur yüreklerin yoludur.",
+"Hayat, sevdiklerinle güzel ve anlamlıdır.",
+"Hayat, her deneyim bir derstir.",
+"Hayat, öğrenmek ve büyümekle güzelleşir.",
+"Hayat, sabır ve emekle değer kazanır.",
+"Hayat, cesaret ve inançla ilerler.",
+"Hayat, hayallerin peşinde koşmaktır.",
+"Hayat, küçük mutluluklarla güzeldir.",
+"Hayat, deneyim ve paylaşımla zenginleşir.",
+"Hayat, sabır ve kararlılıkla kazanılır.",
+"Hayat, cesaret ve çalışkanlıkla ilerler.",
+"Hayat, umut ve azimle anlam kazanır.",
+"Hayat, sevdiklerinle dolu bir yolculuktur.",
+"Hayat, her anı değerlendirmektir.",
+"Hayat, cesur ve azimli olanındır.",
+"Hayat, paylaşmak ve sevmekle güzelleşir.",
+"Hayat, öğrenmek ve denemekle ilerler.",
+"Hayat, sabır ve inançla değer kazanır.",
+"Hayat, hayallerle dolu bir yolculuktur.",
+"Hayat, cesaret ve kararlılıkla yürünür.",
+"Hayat, her zorluk bir fırsattır.",
+"Hayat, sevdiklerinle anlam kazanır.",
+"Hayat, sabır ve azimle devam eder.",
+"Hayat, cesur ve kararlı olanındır.",
+"Hayat, öğrenmek ve gelişmekle güzelleşir.",
+"Hayat, risk almayı ve denemeyi gerektirir.",
+"Hayat, her gün yeni bir başlangıçtır.",
+"Hayat, sevgi ve umutla doludur.",
+"Hayat, cesaret ve sabırla ilerler.",
+"Hayat, hayallerin peşinden gitmektir.",
+"Hayat, her deneyim bir öğretmendir.",
+"Hayat, paylaşmakla güzelleşir.",
+"Hayat, sabır ve inançla kazanılır.",
+"Hayat, cesur ve azimli olanındır.",
+"Hayat, sevgi ve mutlulukla anlam kazanır.",
+"Hayat, her an bir fırsattır.",
+"Hayat, deneyimlerle büyür ve olgunlaşır.",
+"Hayat, sabır ve azimle yürünür.",
+"Hayat, cesaret ve kararlılıkla kazanılır.",
+"Hayat, öğrenmek ve gelişmekle anlam kazanır."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#f8f8f8';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

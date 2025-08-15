@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motivasyon Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#f8f8f8;color:#333;transition:background 0.5s,color 0.5s;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:relative;}
+.logo{font-weight:700;font-size:1.8em;color:#ff3366;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;position:absolute;right:20px;top:50%;transform:translateY(-50%);}
+.gece-mod:hover{background:#ff3366;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#ff7e5f,#feb47b);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/qMypWk4S/motivasyon-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff3366;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Motivasyon Sözleri</h1>
+<p>Başarıya ve hayata ilham veren 150 motivasyon sözü</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+// Motivasyon sözleri - 150 adet
+const sozler=[
+"Başarı, azimli olanın hakkıdır.",
+"Hayal et, inan, başla.",
+"Zorluklar, güçlenmenin yoludur.",
+"Pes etme, zafer yakındır.",
+"Her gün yeni bir fırsattır.",
+"Başarı, küçük adımların toplamıdır.",
+"Denemek, başarmanın ilk adımıdır.",
+"Korkuların seni durdurmasına izin verme.",
+"Hayallerin peşinden git.",
+"Başarı, sabır ve disiplinle gelir.",
+"Cesur ol, risk al.",
+"Yapabileceğine inan.",
+"Her hata, yeni bir ders getirir.",
+"Güçlü ol, yılma.",
+"Azim, engelleri aşar.",
+"Motivasyon, içten başlar.",
+"Başarı, kararlılıkla mümkündür.",
+"Zorluklar, cesareti sınar.",
+"Hayat, cesur olanın yoludur.",
+"İnanç, başarıya açılan kapıdır.",
+"Her gün kendini geliştir.",
+"Başarı, çalışkanın ödülüdür.",
+"İlerlemek için durma.",
+"Olumsuzlukları fırsata çevir.",
+"Hayat, mücadeleyle güzelleşir.",
+"Başarı, cesaretin ürünüdür.",
+"Başarı, pes etmeyenindir.",
+"Her gün yeni bir başlangıçtır.",
+"Motivasyon, hayallerin yakıtıdır.",
+"Güçlü ol, düşlerin peşinden git.",
+"Başarı, planlı ve disiplinli çalışmayla gelir.",
+"Cesaret, sınırlarını aşmaktır.",
+"Hayaller, cesaretle gerçeğe dönüşür.",
+"Başarı, hedefe odaklanmaktır.",
+"Başarısızlık, başarıya giden yoldur.",
+"Azim, en büyük güçtür.",
+"Başarı, kararlılık ve çalışkanlıkla kazanılır.",
+"Her gün bir adım daha ilerle.",
+"İnanç, zorlukları aşmanın anahtarıdır.",
+"Başarı, pes etmeyenlerin ödülüdür.",
+"Hayaller, cesur olanları bekler.",
+"Başarı, sabır ve azimle elde edilir.",
+"Motivasyon, içsel gücün kaynağıdır.",
+"Başarı, plan ve eylemin birleşimidir.",
+"Zorluklar, deneyim kazandırır.",
+"Her gün kendine yatırım yap.",
+"Başarı, disiplinle beslenir.",
+"Başarısızlık, denemenin göstergesidir.",
+"Cesaret, başarıyı getirir.",
+"Hayaller, çalışmakla gerçeğe dönüşür.",
+"Başarı, kararlı ve azimli olmanın sonucudur.",
+"Motivasyon, başarıyı destekler.",
+"Başarı, risk alabilenlerindir.",
+"Her düşüş, yeni bir başlangıçtır.",
+"İlerlemek için cesur ol.",
+"Başarı, hedeflerine odaklanmaktır.",
+"Zorluklar, motivasyonu artırır.",
+"Başarı, planlı ve kararlı adımlarla gelir.",
+"Her gün yeni bir fırsattır.",
+"Cesaret, hayallerin önünü açar.",
+"Başarı, sabır ve emekle kazanılır.",
+"Hayaller, cesur adımlarla gerçekleşir.",
+"Başarı, pes etmeyenlerin eseridir.",
+"Motivasyon, hedeflere ulaşmanın anahtarıdır.",
+"Başarı, sürekli çabayla elde edilir.",
+"Azim, engelleri aşar.",
+"Başarı, denemeye devam edenindir.",
+"Her zorluk, büyüme fırsatıdır.",
+"Başarı, azimli ve kararlı olanındır.",
+"Motivasyon, içsel güçtür.",
+"Başarı, sabır ve planlamayla kazanılır.",
+"Başarı, hayallerin ürünüdür.",
+"Her gün kendini aşmaya çalış.",
+"Başarı, risk alabilenlerindir.",
+"Cesaret, sınırları aşmaktır.",
+"Başarı, azimli olanı ödüllendirir.",
+"Hayaller, cesur yürekler için vardır.",
+"Başarı, planlı ve sürekli çabayla gelir.",
+"Motivasyon, hedeflerin itici gücüdür.",
+"Başarı, sabır ve kararlılıkla kazanılır.",
+"Başarı, disiplinli çalışmanın sonucudur.",
+"Her gün bir adım daha ileri git.",
+"Motivasyon, engelleri aşmanın anahtarıdır.",
+"Başarı, plan ve çalışmayla mümkün olur.",
+"Cesaret, başarıyı getirir.",
+"Başarı, azimli ve kararlı olanındır.",
+"Hayaller, cesaretle gerçeğe dönüşür.",
+"Başarı, pes etmeyenindir.",
+"Motivasyon, her zaman içten gelir.",
+"Başarı, sabır ve azimle kazanılır.",
+"Başarı, risk alanların ödülüdür.",
+"Her gün yeni bir fırsattır.",
+"Başarı, çalışkan ve kararlı olmanın sonucudur.",
+"Cesaret, hedeflere ulaşmayı sağlar.",
+"Başarı, sürekli denemekle elde edilir.",
+"Hayaller, azimli olanı bekler.",
+"Başarı, disiplin ve planlamayla mümkündür.",
+"Motivasyon, başarıyı besler.",
+"Başarı, kararlılık ve emekle gelir.",
+"Her zorluk, başarı için bir basamaktır.",
+"Başarı, sabırlı ve azimli olanındır.",
+"Başarı, cesaret ve riskle elde edilir.",
+"Hayaller, çalışkan ve cesur olanın hakkıdır.",
+"Motivasyon, hedeflere ulaşmanın anahtarıdır.",
+"Başarı, pes etmeyenlerin eseridir.",
+"Başarı, sürekli çaba ve kararlılıkla kazanılır.",
+"Cesaret, hayalleri gerçeğe dönüştürür.",
+"Başarı, disiplin ve azimle mümkündür.",
+"Her gün yeni bir şanstır.",
+"Başarı, azimli ve çalışkan olanındır.",
+"Motivasyon, içsel güçtür.",
+"Başarı, planlı ve sürekli çalışmayla elde edilir.",
+"Hayaller, cesaret ve azimle gerçekleşir.",
+"Başarı, sabır ve kararlılıkla kazanılır.",
+"Başarı, risk alabilenlerindir.",
+"Her gün bir adım daha ilerle.",
+"Başarı, çalışkan ve azimli olmanın sonucudur.",
+"Motivasyon, engelleri aşmanın kaynağıdır.",
+"Başarı, cesaret ve sabırla gelir.",
+"Başarı, disiplinli ve kararlı olmanın ödülüdür.",
+"Hayaller, çalışmakla gerçeğe dönüşür.",
+"Başarı, pes etmeyenlerin hakkıdır.",
+"Motivasyon, her zaman içten gelir."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#f8f8f8';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

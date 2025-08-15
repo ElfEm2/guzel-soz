@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevgiliye Sözler - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#ffe6e6;color:#333;transition:background 0.5s,color 0.5s;}
+a{text-decoration:none;color:inherit;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.logo{font-weight:700;font-size:1.8em;color:#ff3366;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;}
+.gece-mod:hover{background:#ff3366;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#ff7b54,#ff4b2b);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/xC4yzzG9/heart-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff4b2b;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Sevgiliye Sözler</h1>
+<p>Kalbinizi titretecek, romantik ve anlamlı sözler</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+const sozler=[
+"Sen benim en güzel tesadüfümsün.",
+"Her an seni düşündüğümde gülümsüyorum.",
+"Kalbim sadece sana ait.",
+"Sana her baktığımda dünya duruyor gibi.",
+"Seninle her şey daha güzel.",
+"Seninle hayat anlam kazanıyor.",
+"Sen benim en değerli hazinemsin.",
+"Aşkın bana verdiği en büyük hediye sensin.",
+"Sen yanımda olunca her şey kolaylaşıyor.",
+"Seninle her an bir rüya gibi.",
+"Senin gülüşün, günümün en güzel ışığı.",
+"Seninle her an bir masal gibi.",
+"Kalbim seninle tamamlanıyor.",
+"Sen benim huzur kaynağımsın.",
+"Seninle geçen zaman paha biçilemez.",
+"Aşkın bana güç veriyor.",
+"Sana olan sevgim sonsuz.",
+"Seninle her gün yeniden aşık oluyorum.",
+"Kalbim seninle güvenli bir yer buluyor.",
+"Seninle olmak mutluluktur.",
+"Her sabah seninle uyanmak istiyorum.",
+"Sen benim en güzel şarkımsın.",
+"Sana her zaman değer veriyorum.",
+"Seninle her an bir yıldız gibi parlıyorum.",
+"Sen benim hayatımın anlamısın.",
+"Seninle her an bir şiir gibi.",
+"Kalbim seninle bütünleşiyor.",
+"Seninle her an özel hissediyorum.",
+"Sana her zaman güvenebilirim.",
+"Seninle her an bir melodidir.",
+"Sen benim en büyük ilham kaynağımsın.",
+"Seninle her an mutluluk dolu.",
+"Kalbim seninle huzur buluyor.",
+"Seninle hayat daha renkli.",
+"Sen benim en değerli varlığımsın.",
+"Seninle her an bir masal gibi.",
+"Kalbim seninle tamamlanıyor.",
+"Sana her zaman destek olacağım.",
+"Seninle her an bir rüya gibi.",
+"Sen benim en kıymetlimsin.",
+"Seninle her an bir macera.",
+"Kalbim seninle atıyor.",
+"Seninle hayat daha anlamlı.",
+"Sana her zaman ilham veriyorum.",
+"Seninle her an özel.",
+"Sen benim kalbimin sahibisin.",
+"Seninle her şey mümkün.",
+"Seninle birlikte her şey daha güzel.",
+"Kalbim sana ait.",
+"Seninle her an bir melodidir.",
+"Sen benim en güzel hayalimsin.",
+"Seninle her gün daha mutlu oluyorum.",
+"Sen benim en değerli hediyemsin.",
+"Seninle her an bir yıldız gibi parlıyorum.",
+"Kalbim seninle güvenli bir liman.",
+"Sana her zaman değer veriyorum.",
+"Seninle hayat daha dolu.",
+"Sen benim aşkımsın.",
+"Seninle her an özel hissediyorum.",
+"Kalbim seninle bütünleşiyor.",
+"Seninle geçen her saniye kıymetli.",
+"Seninle bir ömür geçirmek istiyorum.",
+"Sen benim mutluluğumsun.",
+"Seninle her şey daha parlak.",
+"Seninle hayat bir başka güzel.",
+"Kalbim seninle tamamlanıyor.",
+"Sen benim huzurumsun.",
+"Seninle her an bir şarkı gibi.",
+"Seninle her şey anlam kazanıyor.",
+"Sana her zaman güvenebilirim.",
+"Seninle her gün bir macera.",
+"Sen benim en büyük mutluluğumsun.",
+"Seninle hayat bir rüya gibi.",
+"Sen benim kalbimin tek sahibisin.",
+"Seninle her an bir şiir gibi.",
+"Kalbim seninle huzur buluyor.",
+"Seninle her gün bir yıldız gibi.",
+"Sen benim en kıymetlimsin.",
+"Seninle hayat daha anlamlı.",
+"Seninle geçen zaman değerli.",
+"Sana her zaman ilham veriyorum.",
+"Seninle her an bir melodidir.",
+"Kalbim seninle tamamlanıyor.",
+"Sen benim en değerli varlığımsın.",
+"Seninle hayat çok güzel.",
+"Seninle her an bir masal gibi.",
+"Sen benim en güzel tesadüfümsün.",
+"Seninle her şey daha parlak.",
+"Kalbim seninle güvenli bir yer buluyor.",
+"Seninle hayat renkleniyor.",
+"Sen benim aşkım.",
+"Seninle her an mutluluk dolu.",
+"Sana her zaman değer veriyorum.",
+"Seninle hayat daha güzel.",
+"Kalbim seninle bütünleşiyor.",
+"Seninle her gün yeni bir başlangıç.",
+"Sen benim en kıymetlimsin.",
+"Seninle her an özel hissediyorum.",
+"Seninle geçen her saniye değerli.",
+"Sen benim mutluluk kaynağımsın.",
+"Seninle her an bir yıldız gibi.",
+"Seninle hayat bir masal gibi.",
+"Kalbim seninle tamamlanıyor.",
+"Sen benim huzur kaynağımsın.",
+"Seninle her şey anlam kazanıyor.",
+"Sana her zaman güvenebilirim.",
+"Seninle her an bir melodidir.",
+"Seninle hayat daha renkli.",
+"Sen benim kalbimin sahibisin.",
+"Seninle her gün mutluluk dolu.",
+"Sen benim aşkımsın.",
+"Seninle her an bir şarkı gibi.",
+"Seninle hayat bir rüya gibi.",
+"Kalbim seninle bütünleşiyor.",
+"Sen benim en değerli hediyemsin.",
+"Seninle her an özel.",
+"Seninle hayat çok anlamlı.",
+"Sen benim en kıymetlimsin.",
+"Seninle geçen her an bir macera.",
+"Kalbim seninle huzur buluyor.",
+"Sen benim mutluluğumsun.",
+"Seninle hayat bir yıldız gibi.",
+"Seninle her gün bir rüya gibi.",
+"Sen benim en güzel hayalimsin.",
+"Seninle her an bir şiir gibi.",
+"Kalbim seninle güvenli bir liman.",
+"Seninle hayat daha dolu.",
+"Sen benim huzurumsun.",
+"Seninle her an bir melodidir.",
+"Seninle geçen zaman kıymetli.",
+"Sen benim aşkımsın.",
+"Seninle hayat çok güzel.",
+"Seninle her an bir masal gibi."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#ffe6e6';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

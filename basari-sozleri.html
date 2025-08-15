@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Başarı Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#f0f8ff;color:#333;transition:background 0.5s,color 0.5s;}
+nav{position:fixed;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(0,0,0,0.1);z-index:3;}
+nav .logo{font-size:1.8rem;font-weight:700;color:#ff3366;cursor:pointer;}
+nav ul{display:flex;gap:30px;list-style:none;}
+nav ul li a{font-weight:500;transition:0.3s;}
+nav ul li a:hover{color:#ff3366;}
+.menu-toggle{display:none;font-size:1.8rem;cursor:pointer;}
+header{height:50vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#4facfe,#00f2fe);color:#fff;}
+header h1{font-size:3rem;margin-bottom:15px;}
+header p{font-size:1.2rem;max-width:600px;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff3366;color:white;}
+@media(max-width:768px){header h1{font-size:2.2rem;} header p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="window.location.href='index.html'">Elif Güzel Sözler</div>
+  <ul>
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="ask-sozleri.html">Aşk Sözleri</a></li>
+    <li><a href="cool-sozler.html">Cool Sözler</a></li>
+    <li><a href="arkadaslik-sozleri.html">Arkadaşlık Sözleri</a></li>
+    <li><a href="basari-sozleri.html">Başarı Sözleri</a></li>
+    <li><a href="ozlu-sozler.html">Özlü Sözler</a></li>
+    <li><a href="motivasyon-sozleri.html">Motivasyon Sözleri</a></li>
+  </ul>
+  <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">☰</div>
+</nav>
+
+<header>
+<h1>Başarı Sözleri</h1>
+<p>Başarıya giden yolda ilham verecek 150 söz burada! Hayal et, çalış, başar.</p>
+</header>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+const sozler = [
+"Başarı, küçük çabaların tekrarıdır.",
+"Hayallerin peşinden gitmek cesaret ister.",
+"Başarının sırrı, vazgeçmemektir.",
+"Başarı, disiplin ve azimle gelir.",
+"Her hata, başarıya bir adımdır.",
+"Başarı, sabır ve çalışma ile şekillenir.",
+"Başarılı olmak için önce inanmak gerekir.",
+"Zirveye giden yol, engellerle doludur.",
+"Başarı, hazırlığın şansı yakalamasıyla olur.",
+"Her düşüş, yeni bir başlangıçtır.",
+"Başarı, cesur olanın hakkıdır.",
+"Azim, başarıya giden anahtardır.",
+"Başarı, hayal gücü ve eylemin birleşimidir.",
+"Her gün bir adım daha yaklaş.",
+"Başarı, risk almayı bilenindir.",
+"Başarılı insanlar, fırsatları değerlendirir.",
+"Başarı, konfor alanının dışındadır.",
+"Her çaba, başarıya yaklaştırır.",
+"Başarı, hedefe olan tutkudur.",
+"Yapabileceğine inan, gerisi gelir.",
+"Başarı, sabırla inşa edilir.",
+"Engeller, başarıya giden merdivenlerdir.",
+"Başarı, kararlılıkla elde edilir.",
+"Başarı, azimli ve sabırlı olmanın sonucudur.",
+"Hayaller, eyleme dönüştüğünde başarı olur.",
+"Başarı, her yeni deneyimle büyür.",
+"Başarı, vazgeçmeyenlerin ödülüdür.",
+"Başarı, zorluklar karşısında direnmekle gelir.",
+"Başarı, planlı ve bilinçli adımlarla olur.",
+"Başarı, istikrarlı çalışmanın ürünüdür.",
+"Başarı, cesur kararların sonucudur.",
+"Başarı, risk alabilenlerin ödülüdür.",
+"Başarı, azim ve kararlılıkla gelir.",
+"Başarı, hayallerini gerçekleştirenlerin hakkıdır.",
+"Başarı, kendine inananların yoludur.",
+"Başarı, sabırlı ve kararlı olanların ürünüdür.",
+"Başarı, sürekli gelişimle elde edilir.",
+"Başarı, fırsatları değerlendirenindir.",
+"Başarı, her hatadan ders çıkarabilenindir.",
+"Başarı, çabayı asla bırakmayanların yoludur.",
+"Başarı, öğrenmeye açık olanındır.",
+"Başarı, zamanın değerini bilenindir.",
+"Başarı, kararlılık ve tutkudur.",
+"Başarı, motivasyonu yüksek olanındır.",
+"Başarı, disiplinli çalışmanın ödülüdür.",
+"Başarı, hedefe sadık kalanındır.",
+"Başarı, cesaret ve azimle gelir.",
+"Başarı, emek ve sabırla inşa edilir.",
+"Başarı, kendini geliştirenindir.",
+"Başarı, kararlı adımlarla elde edilir.",
+"Başarı, fırsatları görenindir.",
+"Başarı, engelleri aşanındır.",
+"Başarı, inanç ve çalışmayla gelir.",
+"Başarı, hedeflerini belirleyenindir.",
+"Başarı, tutkulu ve azimli olanındır.",
+"Başarı, vazgeçmeyenlerin ödülüdür.",
+"Başarı, risk alanların hakkıdır.",
+"Başarı, hayallerine sadık kalanındır.",
+"Başarı, sabır ve kararlılıkla gelir.",
+"Başarı, planlı ve sistemli çalışmanın ürünüdür.",
+"Başarı, zamanını iyi kullananındır.",
+"Başarı, öğrenmekten vazgeçmeyenindir.",
+"Başarı, azimli olanın yoludur.",
+"Başarı, disiplinle inşa edilir.",
+"Başarı, vizyon sahibi olanındır.",
+"Başarı, motivasyon ve eylemdir.",
+"Başarı, engelleri fırsata çevirenindir.",
+"Başarı, inanç ve azimle kazanılır.",
+"Başarı, hayallerini eyleme dönüştürenindir.",
+"Başarı, sürekli gelişimle gelir.",
+"Başarı, zorlukları aşanındır.",
+"Başarı, hedefleri net olanındır.",
+"Başarı, sabırlı ve azimli olmanın ürünüdür.",
+"Başarı, fırsatları değerlendirenindir.",
+"Başarı, cesaret ve kararlılık gerektirir.",
+"Başarı, disiplinli olanındır.",
+"Başarı, hedef odaklı çalışmanın sonucudur.",
+"Başarı, azimli ve tutkulu olanındır.",
+"Başarı, engelleri aşmakla mümkündür.",
+"Başarı, planlı ve istikrarlıdır.",
+"Başarı, inanç ve motivasyonla elde edilir.",
+"Başarı, kendine güvenenindir.",
+"Başarı, öğrenmeye devam edenindir.",
+"Başarı, kararlı adımlarla ilerleyenindir.",
+"Başarı, vizyon sahibi olanındır.",
+"Başarı, tutku ve çalışmayla gelir.",
+"Başarı, engelleri aşabilenindir.",
+"Başarı, sabır ve azimle inşa edilir.",
+"Başarı, hayallerine odaklananindir.",
+"Başarı, motivasyon ve çabayla gelir.",
+"Başarı, hedeflerine sadık kalandır.",
+"Başarı, öğrenmeye açık olanındır.",
+"Başarı, risk alabilenindir.",
+"Başarı, planlı ve disiplinlidir.",
+"Başarı, engelleri fırsata çevirendir.",
+"Başarı, sabırlı ve kararlıdır.",
+"Başarı, azimli ve çalışkandır.",
+"Başarı, cesaretle adım atanındır.",
+"Başarı, hedeflerini bilenindir.",
+"Başarı, eyleme geçenindir.",
+"Başarı, hayallerine inananındır.",
+"Başarı, kararlı ve sabırlıdır.",
+"Başarı, çalışkan ve disiplinlidir.",
+"Başarı, motivasyonu yüksek olanındır.",
+"Başarı, azim ve cesaret gerektirir.",
+"Başarı, öğrenmeye devam edenindir.",
+"Başarı, engelleri aşan ve yılmayanındır.",
+"Başarı, hayallerin peşinden gidenindir.",
+"Başarı, risk almayı bilenindir.",
+"Başarı, azimli ve sabırlıdır.",
+"Başarı, kararlı ve motive olmuş olanındır.",
+"Başarı, fırsatları değerlendirenindir.",
+"Başarı, eylem ve sabırla elde edilir.",
+"Başarı, hedef odaklı olanındır.",
+"Başarı, disiplin ve azimle kazanılır.",
+"Başarı, vizyon sahibi ve kararlı olanındır.",
+"Başarı, cesaret ve motivasyonla gelir.",
+"Başarı, sabırlı ve çalışkandır.",
+"Başarı, öğrenmeye açık ve azimlidir.",
+"Başarı, risk alan ve kararlı olanındır.",
+"Başarı, planlı ve istikrarlıdır.",
+"Başarı, hedeflerine odaklananindir.",
+"Başarı, azimli ve motive olmuş olanındır.",
+"Başarı, engelleri aşan ve pes etmeyenindir.",
+"Başarı, hayallerin peşinden yılmadan gidenindir.",
+"Başarı, kararlı ve sabırlı olmanın ürünüdür.",
+"Başarı, eylem ve motivasyonla gelir.",
+"Başarı, fırsatları gören ve değerlendirenindir.",
+"Başarı, disiplin ve azimle inşa edilir.",
+"Başarı, vizyon sahibi ve çalışkandır.",
+"Başarı, cesaret ve kararlılık gerektirir.",
+"Başarı, sabırlı ve azimlidir.",
+"Başarı, öğrenmeye açık olan ve harekete geçendir.",
+"Başarı, risk alabilen ve kararlı olandır.",
+"Başarı, planlı ve disiplinli çalışanın ödülüdür.",
+"Başarı, hedeflerini bilen ve adım atanındır.",
+"Başarı, eyleme geçen ve azimli olandır.",
+"Başarı, hayallerine inanan ve motive olandır."
+];
+
+const listEl = document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div = document.createElement('div');
+  div.className='soz-card';
+  div.innerText = soz;
+  listEl.appendChild(div);
+});
+</script>
+
+</body>
+</html>
