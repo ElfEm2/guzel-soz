@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arkadaşlık Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#f8f8f8;color:#333;transition:background 0.5s,color 0.5s;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:sticky;top:0;z-index:10;}
+.logo{font-weight:600;font-size:1.8em;color:#ff3366;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;}
+.gece-mod:hover{background:#ff3366;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#6a11cb,#2575fc);color:white;position:relative;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#2575fc;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="window.location.href='index.html'">Elif</div>
+  <span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+  <h1>Arkadaşlık Sözleri</h1>
+  <p>Kalbinizi ısıtacak 150 telifsiz arkadaşlık sözü</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+// 150 arkadaşlık sözü
+const sozler=[
+"Arkadaşlık, mesafe tanımaz.",
+"Gerçek dost, zor zamanda belli olur.",
+"Arkadaş, kalbin aynasıdır.",
+"Dostluk paylaştıkça çoğalır.",
+"Yanımda olduğun sürece hiçbir şeyden korkmam.",
+"Arkadaş, ruhun diğer yarısıdır.",
+"Bir dost, her zaman güvenilir olandır.",
+"Gerçek arkadaş, sessizliği bile paylaşır.",
+"Dostluk, zamanla güçlenir.",
+"Arkadaş, hayatta bir hazinedir.",
+"Beraber gülmek, en güzel ilaçtır.",
+"Arkadaşlık, zor günleri kolaylaştırır.",
+"Birlikte geçirilen anlar unutulmazdır.",
+"Dost, yoldaş ve sırdaştır.",
+"Arkadaş, ruhun enerji kaynağıdır.",
+"Gerçek dostluk, kelimelerden ötedir.",
+"Yanımda olduğunda dünya daha güzel.",
+"Arkadaşlık, hayatın renkleridir.",
+"Dost, sessizce anlayandır.",
+"Bir dost, aile gibidir.",
+"Arkadaş, en büyük destekçindir.",
+"Güven ve sevgi dostluğu besler.",
+"Gerçek arkadaş, eleştirir ama kırmaz.",
+"Yanımda olduğun için minnettarım.",
+"Arkadaş, mutluluğu çoğaltandır.",
+"Dostluk, mesafeleri siler.",
+"Arkadaş, sırdaş ve rehberdir.",
+"Birlikte ağlamak da güzeldir.",
+"Dostluk, hayatın temel taşlarından biridir.",
+"Arkadaş, kalbin huzurudur.",
+"Gerçek dost, yanında olmasa da hissedilendir.",
+"Arkadaşlık, sadakat ister.",
+"Dost, en zor anlarda yanındadır.",
+"Arkadaş, her zaman dürüst olandır.",
+"Birlikte geçirilen zaman kıymetlidir.",
+"Dostluk, kalpten kalbe akar.",
+"Arkadaş, yol gösteren bir ışıktır.",
+"Arkadaş, mutluluğu çoğaltan kişidir.",
+"Dost, hayatın tesellisidir.",
+"Arkadaş, hayatta güvenli limandır.",
+"Bir dost, kalpte yer edinendir.",
+"Dostluk, ruhu besler.",
+"Arkadaş, en güzel anıların mimarıdır.",
+"Gerçek dostluk, fedakarlıktır.",
+"Arkadaş, sıkıntıyı paylaşandır.",
+"Dost, hayatın en değerli hediyesidir.",
+"Arkadaş, kahkahaların sebebidir.",
+"Birlikte sessizliği paylaşmak güzeldir.",
+"Dost, umut verir.",
+"Arkadaş, hayata renk katar.",
+"Gerçek arkadaş, zamanla değer kazanır.",
+"Arkadaş, sıkıntıları hafifletendir.",
+"Dostluk, sadakat ve sevgidir.",
+"Arkadaş, zor zamanların kahramanıdır.",
+"Bir dost, hatırlanacak kişidir.",
+"Arkadaş, neşeyi paylaştıkça büyür.",
+"Dostluk, kalpte kök salar.",
+"Arkadaş, en karanlık anlarda bile ışık olur.",
+"Arkadaşlık, sabır ister.",
+"Dost, kalbin diğer yarısıdır.",
+"Arkadaş, sevginin simgesidir.",
+"Birlikte hayal kurmak güzeldir.",
+"Dost, güvenin sembolüdür.",
+"Arkadaş, hayatın anlamıdır.",
+"Gerçek dost, zor anlarda belli olur.",
+"Arkadaş, ruhun ilacıdır.",
+"Dostluk, paylaşmakla büyür.",
+"Arkadaş, sıkıntıda bile yanındadır.",
+"Arkadaş, kalpte iz bırakandır.",
+"Dost, mutluluğu çoğaltandır.",
+"Arkadaş, hayatta yol gösterendir.",
+"Bir dost, kalpte yer edinendir.",
+"Arkadaşlık, ömür boyu sürer.",
+"Dost, en değerli hazinedir.",
+"Arkadaş, gülümsemeyi çoğaltandır.",
+"Gerçek dost, en zor anlarda yanındadır.",
+"Arkadaş, sırdaştır ve rehberdir.",
+"Arkadaşlık, güven ile büyür.",
+"Dost, hayatın anlamıdır.",
+"Arkadaş, ruhun yoldaşıdır.",
+"Birlikte geçirilen zaman değerlidir.",
+"Dost, hayatın ışığıdır.",
+"Arkadaş, kalpte iz bırakır.",
+"Arkadaşlık, sabır ve sevgi ister.",
+"Dost, sıkıntıları paylaşandır.",
+"Arkadaş, neşeyi çoğaltandır.",
+"Bir dost, en zor anlarda yanındadır.",
+"Arkadaş, hayatın huzurudur.",
+"Dost, mutluluğu paylaşandır.",
+"Arkadaş, güven ve sadakattir.",
+"Arkadaşlık, en güzel duygudur.",
+"Dost, kalbin diğer yarısıdır.",
+"Arkadaş, her zaman yanındadır.",
+"Birlikte gülmek, en güzel ilaçtır.",
+"Arkadaş, sıkıntıları hafifletendir.",
+"Dost, ruhun yansımasıdır.",
+"Arkadaş, hayatın renkleridir.",
+"Bir dost, sessizliği paylaşandır.",
+"Arkadaş, kalbin neşesidir.",
+"Dost, zor zamanlarda ışık olur.",
+"Arkadaş, mutluluğu çoğaltandır.",
+"Arkadaşlık, her zaman değerlidir.",
+"Dost, ruhun enerji kaynağıdır.",
+"Arkadaş, hayata renk katar.",
+"Birlikte ağlamak güzeldir.",
+"Dost, sadakat ve güveni temsil eder.",
+"Arkadaş, kalpte iz bırakır.",
+"Arkadaş, hayatın anlamıdır.",
+"Dost, zor anlarda yanındadır.",
+"Arkadaş, mutluluğu paylaşandır.",
+"Arkadaşlık, kalpten kalbe akar.",
+"Dost, en değerli hazinedir.",
+"Arkadaş, her zaman destekçindir.",
+"Birlikte geçirilen anlar unutulmazdır.",
+"Dost, ruhun diğer yarısıdır.",
+"Arkadaş, hayatın tesellisidir.",
+"Arkadaşlık, güven ve sevgi ister.",
+"Dost, kalpte yer edinendir.",
+"Arkadaş, neşeyi çoğaltandır.",
+"Birlikte hayal kurmak güzeldir.",
+"Arkadaş, zor zamanların kahramanıdır.",
+"Dost, kalbin diğer yarısıdır.",
+"Arkadaş, sabır ve sevgiyi simgeler.",
+"Arkadaşlık, zamanla güçlenir.",
+"Dost, hayatın ışığıdır.",
+"Arkadaş, en güzel anıların mimarıdır.",
+"Arkadaş, mutluluğu çoğaltan kişidir.",
+"Dost, en zor anlarda yanında olan kişidir."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/Gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#f8f8f8';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cool Sözler - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#e0f7ff;
+  color:#333;
+  transition:background 0.5s,color 0.5s;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:#fff;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  position:relative;
+}
+.logo{
+  font-weight:600;
+  font-size:1.8em;
+  color:#1a73e8;
+  cursor:pointer;
+}
+.gece-mod{
+  cursor:pointer;
+  font-size:1.2em;
+  padding:8px 12px;
+  border-radius:50%;
+  background:#333;
+  color:white;
+  transition:0.3s;
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+}
+.gece-mod:hover{background:#1a73e8;}
+.banner{
+  text-align:center;
+  padding:50px 20px;
+  background:linear-gradient(135deg,#4facfe,#00f2fe);
+  color:white;
+  position:relative;
+}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+  padding:20px;
+}
+.soz-card{
+  background:rgba(255,255,255,0.9);
+  padding:20px;
+  border-radius:15px;
+  width:90%;
+  max-width:400px;
+  text-align:center;
+  font-size:1.1em;
+  transition:0.3s;
+  cursor:pointer;
+}
+.soz-card:hover{
+  transform:scale(1.05);
+  background:#1a73e8;
+  color:white;
+}
+@media(max-width:768px){
+  .banner h1{font-size:2em;}
+  .banner p{font-size:1em;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="window.location.href='index.html'">Elif</div>
+  <span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+  <h1>Cool Sözler</h1>
+  <p>Havalı ve telifsiz sözleri keşfedin</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+const sozler=[
+"Hayat kısa, gülümse ve devam et.",
+"Cesur ol, sınırlarını zorla.",
+"Başarı, sabır ve azimle gelir.",
+"Kendi yolunu çiz.",
+"Hayallerin peşinden git.",
+"Sevgi, kelimelerden güçlüdür.",
+"Güçlü olmak, her zaman kazanmak demek değildir.",
+"Fark yarat, iz bırak.",
+"Pozitif düşün, pozitif yaşa.",
+"Kendi değerini bil.",
+"Hayat bir maceradır, tadını çıkar.",
+"Kendi ışığını bul.",
+"Başarı tesadüf değildir, emek ister.",
+"Hata yap, öğren, büyü.",
+"Gerçek özgürlük kendin olmaktır.",
+"Hayal kurmaktan asla vazgeçme.",
+"Kendi hikâyeni yaz.",
+"Engeller, güçlenmek için fırsattır.",
+"Cesaret, korkusuz olmak değil, korkuya rağmen ilerlemektir.",
+"Kendi yolunda yürüyen asla kaybolmaz.",
+"Zamanını boşa harcama, anı yaşa.",
+"Başarı, küçük adımlarla gelir.",
+"Hayat seninle başlar.",
+"Kendine inan, her şey mümkün.",
+"Farklı ol, sıradanlığı bırak.",
+"Bugün, dünün tekrarı olmasın.",
+"Yaratıcılık sınır tanımaz.",
+"Özgüven, en güçlü silahtır.",
+"Hayallerini erteleme.",
+"Kendi ışığında parlamaktan korkma.",
+"Gülümsemek ruhun en güzel egzersizidir.",
+"Başarı, pes etmeyenindir.",
+"Kendi değerini başkalarına bırakma.",
+"Hayat, anı biriktirmektir.",
+"Her gün yeni bir başlangıçtır.",
+"Kendi hedeflerini belirle ve onlara ulaş.",
+"Cesaret, yenilgiyi göze almaktır.",
+"Hayatın tadını çıkar, üzülme.",
+"Farkındalık, mutluluğun anahtarıdır.",
+"Başarı, planlı ve disiplinli çalışmayla gelir.",
+"Hayallerin peşinden koş, korkma.",
+"Pozitif enerji yay, olumsuzluğu uzak tut.",
+"Başarı, çalışkan ve azimli olanındır.",
+"Hayatın ritmini yakala.",
+"Başarı, sabırlı olanındır.",
+"Farklı düşün, sıradan olma.",
+"Kendine yatırım yap, geri dönüş büyük olur.",
+"Başarı, inanç ve azimle gelir.",
+"Hayat, cesur olanı ödüllendirir.",
+"Yaratıcı ol, farklı ol.",
+"Hayallerini gerçekleştirmek için harekete geç.",
+"Başarı, risk alabilenindir.",
+"Hayat, öğrenmek ve deneyimlemektir.",
+"Kendi yolunu çiz, başkasının peşinden gitme.",
+"Fark yarat, sıradan olma.",
+"Cesaret, korkuya rağmen harekete geçmektir.",
+"Pozitif ol, hayatı kucakla.",
+"Hayat, küçük anlarda gizlidir.",
+"Başarı, kendine güvenenindir.",
+"Kendi sınırlarını zorla ve ilerle.",
+"Hayat bir yolculuktur, tadını çıkar.",
+"Başarı, pes etmeyenlerindir.",
+"Hayallerin peşinden git, vazgeçme.",
+"Farklı ol, herkes gibi olma.",
+"Pozitif ol, olumsuzluğu uzaklaştır.",
+"Hayat kısa, cesur ol.",
+"Kendi ışığında parlamaktan korkma.",
+"Başarı, kararlılıkla gelir.",
+"Hayat, cesurları ödüllendirir.",
+"Cesaret, hayal kurmaktır.",
+"Farkındalıkla yaşa, anı kaçırma.",
+"Kendi hikâyeni yaz, başkasına bırakma.",
+"Hayatın tadını çıkar, endişelenme.",
+"Başarı, azimli ve çalışkanın hakkıdır.",
+"Hayat bir fırsattır, değerlendir.",
+"Pozitif düşün, olumsuzluktan uzak dur.",
+"Hayallerin peşinden koş, durma.",
+"Başarı, cesaret ve kararlılıkla gelir.",
+"Hayat kısa, zamanını iyi kullan.",
+"Farklı düşün, sıradan olma.",
+"Başarı, planlı ve disiplinli çalışmayla gelir.",
+"Hayat, kendi yolunu çizmekten ibarettir.",
+"Cesaret, yenilgiden korkmamaktır.",
+"Pozitif enerji yay, etrafını güzelleştir.",
+"Hayatın her anını değerlendir.",
+"Başarı, pes etmeyenlerin ödülüdür.",
+"Hayallerine inan, vazgeçme.",
+"Fark yarat, kendi imzanı bırak.",
+"Cesaret, hayallerin için mücadele etmektir.",
+"Hayat, deneyimlemek ve öğrenmektir.",
+"Pozitif düşün, her şeyi daha güzel yap.",
+"Kendi ışığını keşfet ve parlamaktan korkma.",
+"Başarı, inanç ve azimle kazanılır.",
+"Hayat, cesur olanı ödüllendirir.",
+"Hayallerin peşinden git, durma.",
+"Farklı ol, sıradanlığı kır.",
+"Cesaret, korkuya rağmen ilerlemektir.",
+"Pozitif ol, yaşamı kucakla.",
+"Hayat, küçük anlarda saklıdır.",
+"Başarı, kendine güvenenindir.",
+"Hayallerini gerçekleştirmek için harekete geç.",
+"Kendi yolunu çiz, başkasının peşinden gitme.",
+"Fark yarat, iz bırak.",
+"Cesaret, hayallerini yaşamak demektir.",
+"Pozitif enerjiyle hayatı güzelleştir.",
+"Başarı, kararlılık ve azimle gelir.",
+"Hayat, anı yaşamakla güzelleşir.",
+"Hayallerin peşinden koş, durma.",
+"Farklı düşün, sıradan olma.",
+"Cesaret, hayallerin için mücadele etmektir.",
+"Pozitif ol, hayatı sev.",
+"Hayat kısa, cesur ol.",
+"Başarı, çalışkan ve azimli olanındır.",
+"Hayallerini gerçekleştir, durma.",
+"Fark yarat, kendi yolunu çiz.",
+"Cesaret, korkuya rağmen ilerlemektir.",
+"Pozitif düşün, olumsuzluğu uzak tut.",
+"Başarı, sabır ve azimle kazanılır.",
+"Hayat, kendi hikâyeni yazmaktır.",
+"Hayallerin peşinden git, vazgeçme.",
+"Farklı ol, sıradanlığı bırak.",
+"Cesaret, hayallerin için savaşmaktır.",
+"Pozitif ol, etrafına ışık saç.",
+"Hayatın tadını çıkar, endişelenme.",
+"Başarı, inanç ve azimle gelir.",
+"Hayallerine inan, durma.",
+"Fark yarat, iz bırak.",
+"Cesaret, korkuya rağmen harekete geçmektir.",
+"Pozitif enerji yay, yaşamı güzelleştir.",
+"Başarı, azimli olanındır.",
+"Hayat, öğrenmek ve deneyimlemektir.",
+"Hayallerin peşinden git, vazgeçme.",
+"Farklı ol, kendi yolunu çiz.",
+"Cesaret, hayallerin için mücadele etmektir.",
+"Pozitif ol, olumsuzluğu uzak tut.",
+"Başarı, planlı ve disiplinli çalışmayla gelir."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#e0f7ff';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aşk Sözleri - Elif Güzel Sözler</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#ffe6e6;color:#333;transition:background 0.5s,color 0.5s;}
+header{display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);position:relative;}
+.logo{font-weight:600;font-size:1.8em;color:#ff4b2b;cursor:pointer;}
+.gece-mod{cursor:pointer;font-size:1.2em;padding:8px 12px;border-radius:50%;background:#333;color:white;transition:0.3s;position:absolute;right:20px;top:50%;transform:translateY(-50%);}
+.gece-mod:hover{background:#ff4b2b;}
+.banner{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#ff7b54,#ff4b2b);color:white;position:relative;}
+.banner::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://i.postimg.cc/xC4yzzG9/heart-bg.png') center/contain no-repeat;opacity:0.15;}
+.banner h1{font-size:2.5em;margin-bottom:15px;}
+.banner p{font-size:1.2em;}
+.soz-listesi{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;padding:20px;}
+.soz-card{background:rgba(255,255,255,0.9);padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center;font-size:1.1em;transition:0.3s;cursor:pointer;}
+.soz-card:hover{transform:scale(1.05);background:#ff4b2b;color:white;}
+@media(max-width:768px){.banner h1{font-size:2em;}.banner p{font-size:1em;}}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo" onclick="window.location.href='index.html'">Elif</div>
+<span class="gece-mod" id="toggleDark">🌙</span>
+</header>
+
+<section class="banner">
+<h1>Aşk Sözleri</h1>
+<p>Kalbinizi ısıtacak telifsiz aşk sözleri</p>
+</section>
+
+<div class="soz-listesi" id="sozList"></div>
+
+<script>
+const sozler=[
+"Sevgi paylaştıkça çoğalır.",
+"Kalp, sözden daha çok konuşur.",
+"Aşk sabır ve emek ister.",
+"Seninle her an bir başka güzel.",
+"Bir gülüşün yeter, tüm günüme ışık olur.",
+"Sevgi, sessizce büyür.",
+"Aşkla bak, aşkla yaşa.",
+"Sana her baktığımda kalbim hızlanıyor.",
+"Kalpler birbirini tanır.",
+"Sevgi, uzakları yakın eder.",
+"Sen yanımda olunca dünya duruyor gibi.",
+"Aşk, küçük anlarda gizlidir.",
+"Birlikte geçen her saniye paha biçilemez.",
+"Seni düşündüğümde gülümsemem kendiliğinden gelir.",
+"Kalbimin en güzel köşesi senin için.",
+"Aşk, kelimelerden öte bir his.",
+"Sana her bakışımda yeniden aşık oluyorum.",
+"Sevgi, en karanlık anlarda bile ışık verir.",
+"Seninle olmak huzurdur.",
+"Her bakışın içimi ısıtıyor.",
+"Seninle her şey daha güzel.",
+"Sevgi, anlayış ve sabır ister.",
+"Seninle her gün yeni bir başlangıç.",
+"Kalbim seninle tamamlanıyor.",
+"Sana her zaman güvenebilirim.",
+"Aşk, fedakarlıkla büyür.",
+"Seninle her an mutluyum.",
+"Kalplerimiz bir ritim tutuyor.",
+"Seninle her şey kolaylaşıyor.",
+"Sevgi, küçük dokunuşlarda gizlidir.",
+"Her an seni düşünüyorum.",
+"Sana olan sevgim sınırsız.",
+"Kalbim seninle bütünleşiyor.",
+"Seninle her an bir masal gibi.",
+"Sevgi, zamanla güçlenir.",
+"Seninle her an bir macera.",
+"Sana her zaman değer veriyorum.",
+"Kalbim seninle huzur buluyor.",
+"Sevgi, gülümsemelerde saklıdır.",
+"Sana baktığımda kalbim duruyor.",
+"Seninle her an özel hissediyorum.",
+"Kalbim seninle atıyor.",
+"Seni düşündüğümde dünya güzelleşiyor.",
+"Sevgi, küçük jestlerde gizlidir.",
+"Seninle her an bir şarkı gibi.",
+"Kalbim sana ait olmaktan mutluluk duyuyor.",
+"Sana her zaman destek olacağım.",
+"Aşk, iki kalbin uyumudur.",
+"Seninle her gün daha iyi bir insan oluyorum.",
+"Kalbim seninle bütünleşiyor.",
+"Sevgi, paylaştıkça büyür.",
+"Seninle her şey daha parlak.",
+"Her an sana teşekkür ediyorum.",
+"Kalbim seninle güvenli bir yer buluyor.",
+"Sana her zaman değer veriyorum.",
+"Sevgi, küçük anlarda saklıdır.",
+"Seninle hayat anlam kazanıyor.",
+"Kalbim seninle atıyor.",
+"Seninle her an bir rüya gibi.",
+"Sevgi, sessizlikte bile konuşur.",
+"Sana her zaman ilham veriyorsun.",
+"Kalbim seninle tamamlanıyor.",
+"Seninle her an bir yıldız gibi.",
+"Sevgi, samimiyette gizlidir.",
+"Sana her bakışımda mutluluk hissediyorum.",
+"Kalbim seninle huzurlu.",
+"Seninle her an bir masal gibi.",
+"Sevgi, güven ve sabırla büyür.",
+"Sana her zaman yanındayım.",
+"Kalbim seninle tamamlanıyor.",
+"Seninle her an bir şiir gibi.",
+"Sevgi, sevgiyle beslenir.",
+"Sana her zaman değer veriyorum.",
+"Kalbim seninle bütünleşiyor.",
+"Seninle her an bir melodidir.",
+"Sevgi, kalpten kalbe akar.",
+"Seninle her zaman mutluyum.",
+"Kalbim seninle huzur buluyor.",
+"Sana her zaman güvenebilirim.",
+"Sevgi, küçük anlarda gizlidir.",
+"Seninle her an özel hissediyorum.",
+"Kalbim seninle tamamlanıyor.",
+"Sevgi, her zaman güç verir.",
+"Seninle her zaman bir bütünüz.",
+"Aşk, içten gelen bir hisdir.",
+"Seninle her an bir macera gibi.",
+"Kalbim seninle tamamlanıyor.",
+"Seninle zaman duruyor.",
+"Sevgi, her nefeste büyür.",
+"Seninle her an farklı bir dünya.",
+"Kalbim sana ait.",
+"Seninle olmak mutluluktur.",
+"Aşk, her sabah seninle başlar.",
+"Sevgi, küçük anlarda gizlidir.",
+"Seninle her gün bir macera.",
+"Kalbim seninle bütünleşiyor.",
+"Seni düşünmek mutluluktur.",
+"Aşk, gözlerde başlar.",
+"Seninle her şey anlam kazanır.",
+"Kalbim seninle tamamlanıyor.",
+"Sana her zaman değer veriyorum.",
+"Sevgi, sessizlikte bile konuşur.",
+"Seninle hayat renkleniyor.",
+"Kalbim seninle huzur buluyor.",
+"Aşkla bakmak, dünyayı güzelleştirir.",
+"Seninle her an özel.",
+"Kalbim seninle bir bütün.",
+"Sevgi, küçük dokunuşlarda büyür.",
+"Seninle her gün bir rüya.",
+"Kalbim seninle tamamlanıyor.",
+"Seninle her an mutluluk.",
+"Sevgi, her an değer verir.",
+"Seninle her an bir melodidir.",
+"Kalbim seninle güvenli.",
+"Sana her zaman destek olacağım.",
+"Seninle her an bir şiir.",
+"Sevgi, paylaşmakla çoğalır.",
+"Seninle her an bir yıldız gibi.",
+"Kalbim seninle huzur buluyor.",
+"Seninle her gün bir masal.",
+"Sevgi, küçük sürprizlerde gizlidir.",
+"Seninle her an bir macera.",
+"Kalbim seninle tamamlanıyor.",
+"Sana her zaman ilham veriyorum.",
+"Seninle her an özel hissediyorum.",
+"Sevgi, sevgiyle beslenir.",
+"Seninle her an bir şarkı gibi.",
+"Kalbim seninle mutluluk buluyor.",
+"Seninle her an bir rüya gibi.",
+"Aşk, sabır ve güven ister.",
+"Seninle her an bir yıldız gibi.",
+"Kalbim seninle tamamlanıyor.",
+"Sana her zaman değer veriyorum.",
+"Seninle hayat anlam kazanıyor.",
+"Sevgi, her zaman içten gelir.",
+"Seninle her gün bir mutluluk.",
+"Kalbim seninle huzur buluyor.",
+"Seninle her an bir melodidir.",
+"Sevgi, küçük sözlerde gizlidir.",
+"Seninle her an bir masal gibi.",
+"Kalbim seninle bütünleşiyor.",
+"Seni düşündüğümde kalbim hızlanıyor.",
+"Seninle her an bir şiir gibi.",
+"Kalbim seninle tamamlanıyor.",
+"Sana her zaman güvenebilirim.",
+"Seninle her an özel hissediyorum.",
+"Sevgi, paylaştıkça çoğalır.",
+"Seninle her gün bir rüya.",
+"Kalbim seninle mutluluk buluyor.",
+"Sana her zaman değer veriyorum.",
+"Seninle her an bir yıldız gibi.",
+"Kalbim seninle huzur buluyor."
+];
+
+const listEl=document.getElementById('sozList');
+sozler.forEach(soz=>{
+  const div=document.createElement('div');
+  div.className='soz-card';
+  div.innerText=soz;
+  listEl.appendChild(div);
+});
+
+// Gece/gündüz modu
+const toggleDark=document.getElementById('toggleDark');
+toggleDark.addEventListener('click',()=>{
+  const cards=document.querySelectorAll('.soz-card');
+  if(document.body.style.backgroundColor==='black'){
+    document.body.style.backgroundColor='#ffe6e6';
+    document.body.style.color='#333';
+    toggleDark.innerText='🌙';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.9)';
+      card.style.color='#333';
+    });
+  } else {
+    document.body.style.backgroundColor='black';
+    document.body.style.color='white';
+    toggleDark.innerText='☀️';
+    cards.forEach(card=>{
+      card.style.background='rgba(255,255,255,0.1)';
+      card.style.color='white';
+    });
+  }
+});
+</script>
+
+</body>
+</html>
